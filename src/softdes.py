@@ -16,6 +16,12 @@ DBNAME = './quiz.db'
 
 
 def lambda_handler(event, context):
+    """
+
+    :param event:
+    :param context:
+    :return:
+    """
     try:
         import json
         import numbers
@@ -46,10 +52,20 @@ def lambda_handler(event, context):
 
 
 def convert_date(orig):
+    """
+
+    :param orig:
+    :return:
+    """
     return orig[8:10] + '/' + orig[5:7] + '/' + orig[0:4] + ' ' + orig[11:13] + ':' + orig[14:16] + ':' + orig[17:]
 
 
 def get_quizes(user):
+    """
+
+    :param user:
+    :return:
+    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     if user in ['admin', 'fabioja']:
@@ -63,6 +79,12 @@ def get_quizes(user):
 
 
 def get_user_quiz(userid, quizid):
+    """
+
+    :param userid:
+    :param quizid:
+    :return:
+    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
@@ -74,6 +96,15 @@ def get_user_quiz(userid, quizid):
 
 
 def set_user_quiz(userid, quizid, sent, answer, result):
+    """
+
+    :param userid:
+    :param quizid:
+    :param sent:
+    :param answer:
+    :param result:
+    :return:
+    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     # print("insert into USERQUIZ(userid,quizid,sent,answer,result) values ('{0}',{1},'{2}','{3}','{4}');".format(userid, quizid, sent, answer, result))
@@ -86,6 +117,12 @@ def set_user_quiz(userid, quizid, sent, answer, result):
 
 
 def get_quiz(id, user):
+    """
+
+    :param id:
+    :param user:
+    :return:
+    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     if user in ['admin', 'fabioja']:
@@ -101,6 +138,12 @@ def get_quiz(id, user):
 
 
 def set_info(pwd, user):
+    """
+
+    :param pwd:
+    :param user:
+    :return:
+    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute("UPDATE USER set pass = ? where user = ?", (pwd, user))
@@ -109,6 +152,11 @@ def set_info(pwd, user):
 
 
 def get_info(user):
+    """
+
+    :param user:
+    :return:
+    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(f"SELECT pass, type from USER where user = '{user}'")
