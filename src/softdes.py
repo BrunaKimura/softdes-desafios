@@ -16,22 +16,22 @@ DBNAME = './quiz.db'
 
 def lambda_handler(event, context):
     try:
-        import json 
+        import json
         import numbers
-        
+
         def not_equals(first, second):
             if isinstance(first, numbers.Number) and isinstance(second, numbers.Number):
                 return abs(first - second) > 1e-3
             return first != second
-        
+
         # TODO implement
         ndes = int(event['ndes'])
         code = event['code']
         args = event['args']
         resp = event['resp']
-        diag = event['diag'] 
+        diag = event['diag']
         exec(code, locals())
-        
+
         
         test = []
         for index, arg in enumerate(args):

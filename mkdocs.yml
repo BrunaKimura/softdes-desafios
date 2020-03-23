@@ -1,1 +1,6 @@
-site_name: My Docs
+site_name: SoftDes Desafio Docs
+
+nav:
+    - Home: index.md
+    - About: about.md
+theme: material
