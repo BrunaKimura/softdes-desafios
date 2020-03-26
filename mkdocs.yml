@@ -2,5 +2,7 @@ site_name: SoftDes Desafio Docs
 
 nav:
     - Home: index.md
-    - About: about.md
+    - Aluno: aluno.md
+    - Professor: professor.md
+    - Guia de Desenvolvimento: guia_des.md
 theme: material
