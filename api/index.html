@@ -35,6 +35,9 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+<a class="md-skip" href="#servidor" tabindex="0">
+        Skip to content
+      </a>
 <header class="md-header" data-md-component="header">
 <nav class="md-header-nav md-grid">
 <div class="md-flex">
@@ -133,9 +136,52 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-toggle md-nav__toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        API
+      </label>
 <a class="md-nav__link md-nav__link--active" href="./" title="API">
       API
     </a>
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor">
+    servidor
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor.change">
+    change()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pass">
+    /pass
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor.logout">
+    logout()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logout">
+    /logout
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor.main">
+    main()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    /
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../aluno/" title="Aluno">
@@ -157,10 +203,154 @@
 </div>
 </div>
 </div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">Table of contents</label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor">
+    servidor
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor.change">
+    change()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pass">
+    /pass
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor.logout">
+    logout()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#logout">
+    /logout
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#servidor.main">
+    main()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+    /
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
 <a class="md-icon md-content__icon" href="https://github.com/BrunaKimura/softdes-desafios/edit/master/docs/api.md" title="Edit this page"></a>
 <h1>API</h1>
+<div class="doc doc-object doc-module">
+<h6 class="hidden-toc" href="#servidor" id="servidor" style="visibility: hidden; width: 0; height: 0;">
+</h6>
+<div class="doc doc-contents first">
+<p>O servidor de desafios de software é composto por três rotas, a principal <code>main</code>, <code>change</code> e <code>logout</code>, que são
+documentadas a seguir:</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="servidor.change">
+<code class="highlight language-python">
+change<span class="p">()</span> </code>
+</h2>
+<div class="doc doc-contents">
+<h2 id="pass">/pass</h2>
+<p>Esta rota apresenta dois métodos HTTP.
+O método GET é responsável por renderizar a página principal em seus diferentes estados.
+O método POST é responsável por trocar a senha do usuário.</p>
+<p>Na rota POST, é esperado 3 itens no request form: old, new e again.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;function render_template at 0x7f9af56bc2f0&gt;</code></td>
+<td>
+<p>Renderiza a página index.html</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="servidor.logout">
+<code class="highlight language-python">
+logout<span class="p">()</span> </code>
+</h2>
+<div class="doc doc-contents">
+<h2 id="logout">/logout</h2>
+<p>Esta rota apresenta um métodos HTTP.
+O método GET é responsável por renderizar a página principal de forma desautenticada.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;function render_template at 0x7f9af56bc2f0&gt;</code></td>
+<td>
+<p>Renderiza a página index.html</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="servidor.main">
+<code class="highlight language-python">
+main<span class="p">()</span> </code>
+</h2>
+<div class="doc doc-contents">
+<h2 id="_1">/</h2>
+<p>Esta rota apresenta dois métodos HTTP.
+O método GET é responsável por renderizar a página principal em seus diferentes estados.
+O método POST é responsável por receber o arquivo do desafio e submetê-lo aos testes.</p>
+<p>Como argumento, ambos métodos recebem ID index.html, que representa o ID do desafio.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;function render_template at 0x7f9af56bc2f0&gt;</code></td>
+<td>
+<p>Renderiza a página index.html em diferentes estados</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
 </article>
 </div>
 </div>
