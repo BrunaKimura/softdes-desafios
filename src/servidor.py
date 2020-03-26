@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun 28 09:00:39 2017
-
-@author: rauli
+O servidor de desafios de software é composto por três rotas, a principal `main`, `change` e `logout`, que são
+documentadas a seguir:
 """
 
 import hashlib
@@ -16,12 +15,6 @@ DBNAME = './quiz.db'
 
 
 def lambda_handler(event, context):
-    """
-
-    :param event:
-    :param context:
-    :return:
-    """
     try:
         import json
         import numbers
@@ -52,20 +45,10 @@ def lambda_handler(event, context):
 
 
 def convert_date(orig):
-    """
-
-    :param orig:
-    :return:
-    """
     return orig[8:10] + '/' + orig[5:7] + '/' + orig[0:4] + ' ' + orig[11:13] + ':' + orig[14:16] + ':' + orig[17:]
 
 
 def get_quizes(user):
-    """
-
-    :param user:
-    :return:
-    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     if user in ['admin', 'fabioja']:
@@ -79,12 +62,6 @@ def get_quizes(user):
 
 
 def get_user_quiz(userid, quizid):
-    """
-
-    :param userid:
-    :param quizid:
-    :return:
-    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(
@@ -96,15 +73,6 @@ def get_user_quiz(userid, quizid):
 
 
 def set_user_quiz(userid, quizid, sent, answer, result):
-    """
-
-    :param userid:
-    :param quizid:
-    :param sent:
-    :param answer:
-    :param result:
-    :return:
-    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     # print("insert into USERQUIZ(userid,quizid,sent,answer,result) values ('{0}',{1},'{2}','{3}','{4}');".format(userid, quizid, sent, answer, result))
@@ -117,12 +85,6 @@ def set_user_quiz(userid, quizid, sent, answer, result):
 
 
 def get_quiz(id, user):
-    """
-
-    :param id:
-    :param user:
-    :return:
-    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     if user in ['admin', 'fabioja']:
@@ -138,12 +100,6 @@ def get_quiz(id, user):
 
 
 def set_info(pwd, user):
-    """
-
-    :param pwd:
-    :param user:
-    :return:
-    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute("UPDATE USER set pass = ? where user = ?", (pwd, user))
@@ -152,11 +108,6 @@ def set_info(pwd, user):
 
 
 def get_info(user):
-    """
-
-    :param user:
-    :return:
-    """
     conn = sqlite3.connect(DBNAME)
     cursor = conn.cursor()
     cursor.execute(f"SELECT pass, type from USER where user = '{user}'")
@@ -176,10 +127,18 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?TX'
 
 @app.route('/', methods=['GET', 'POST'])
 @auth.login_required
-def main():
+def main() -> render_template:
     """
+    ## /
 
-    :return:
+    Esta rota apresenta dois métodos HTTP.
+    O método GET é responsável por renderizar a página principal em seus diferentes estados.
+    O método POST é responsável por receber o arquivo do desafio e submetê-lo aos testes.
+
+    Como argumento, ambos métodos recebem ID index.html, que representa o ID do desafio.
+
+    Returns:
+        Renderiza a página index.html em diferentes estados
     """
     msg = ''
     status = 1
@@ -244,10 +203,18 @@ def main():
 
 @app.route('/pass', methods=['GET', 'POST'])
 @auth.login_required
-def change():
+def change() -> render_template:
     """
+    ## /pass
 
-    :return:
+    Esta rota apresenta dois métodos HTTP.
+    O método GET é responsável por renderizar a página principal em seus diferentes estados.
+    O método POST é responsável por trocar a senha do usuário.
+
+    Na rota POST, é esperado 3 itens no request form: old, new e again.
+
+    Returns:
+        Renderiza a página index.html
     """
     if request.method == 'POST':
         velha = request.form['old']
@@ -274,33 +241,28 @@ def change():
 
 
 @app.route('/logout')
-def logout():
+def logout() -> render_template:
     """
+    ## /logout
 
-    :return:
+    Esta rota apresenta um métodos HTTP.
+    O método GET é responsável por renderizar a página principal de forma desautenticada.
+
+    Returns:
+        Renderiza a página index.html
     """
     return render_template('index.html', p=2, msg="Logout com sucesso"), 401
 
 
 @auth.get_password
 def get_password(username):
-    """
-
-    :param username:
-    :return:
-    """
     return get_info(username)
 
 
 @auth.hash_password
 def hash_pw(password):
-    """
-
-    :param password:
-    :return:
-    """
     return hashlib.md5(password.encode()).hexdigest()
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=80)
+    app.run(debug=True, host='0.0.0.0', port=8080)
