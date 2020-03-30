@@ -1,4 +1,7 @@
 site_name: SoftDes Desafio Docs
+site_url: https://brunakimura.github.io/softdes-desafios/
+repo_url: https://github.com/BrunaKimura/softdes-desafios
+repo_name: BrunaKimura/softdes-desafios
 
 nav:
     - Home: index.md
