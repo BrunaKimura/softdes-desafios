@@ -58,7 +58,7 @@
 
 		  <!-- main -->
 		  {% if msg != '' %}
-		  <div class="alert alert-warning" role="alert">
+		  <div id="aviso-senha" class="alert alert-warning" role="alert">
             {{ msg }}
           </div>
 		  {% endif %}
@@ -80,7 +80,7 @@
                     <input type="password" class="form-control-file" id="repeteco" name="again">
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" id="change" class="btn btn-primary">Enviar</button>
               </form>
             </div>
           </div>
