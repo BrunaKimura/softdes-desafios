@@ -1,55 +1,45 @@
 # Professores
 
-## Introdução
-
-## Configurando o Ambiente
-O primeiro passo para utilizar o servidor é configurar o ambiente. Antes de tudo é necessário criar o banco de dados(BD) onde será armazenado tanto as perguntas dos desafios como os usuários da ferramenta, ou seja, os alunos.
-
-Para tanto é necessário instalar o gerenciador do BD, sqlite3. Execute o comando abaixo em um novo terminal (Crtl+Shift+T) para instalar o sqlite3.
-
-```$ pip install pysqlite3```
-
-Com o gerenciador instalado o próximo passo é criar o banco de dados utilizando o sqlite3. O comando abaixo permite criar um BD com o nome "quiz", este comando deve ser executado na pasta `\src` do projeto. 
-
-```$ sqlite3 quiz.db```
-
-Ao Executar o comando um documento chamado `quiz.db` será criado na mesma pasta e o seu terminal deverá estardentro do ambiente do sqlite3.
-Para checar se o banco de dados foi devidamente criado, execute o seguinte comando no sqlite3.
-
-``` sqlite> .database```
-
-A função deve retornar o caminho até o documento `quiz.db`. Com isso feito, agora é necessário criar as tabelas do projeto. Assim, deve-se executar o seguinte comando:
-
-``` sqlite> .read quiz.sql```
-
-
-Ou simplesmente execute o comando abaixo, assim irá criar o banco de dados e redirecionar as tabelas para o mesmo.
-
-```$ sqlite3 quiz.db < quiz.sql```
-
-Para checar se as tabelas foram de fato criadas execute o seguinte comando:
-
-```sqlite> .tables ```
-
-O retorno será as tabelas do projeto. Neste caso:
-```QUIZ      USER      USERQUIZ```
-
 ## Adicionando os Usuários (Alunos)
 
-O primeiro passo é criar um documento `.csv`, na pasta `\src` do projeto. O comando abaixo irá criar o documento e abrir para a edição no editor *nano*.
+O primeiro passo é criar um documento `.csv`, na pasta `src/` do projeto. O comando abaixo irá criar o documento e abrir para a edição no editor *nano*.
 
 ```$ nano users.csv```
 
-Adicione os alunos e sua senha separando com vírgulas: aluno, senha
+Para adicionar os usuários é necessário escrever o login e o seu tipo sepados por vírgulas, sendo que este último pode ser `admin` para administrador ou `aluno` para os alunos. Cada linha recebe a informação de um usuário. Adicione primeiramenta na primeira linha o administrador da página (admin, admin) e em seguida os alunos.
 
 ![Adiciona aluno](img/add_alunos.png)
 
-Para salvar o arquivo basta utilizar o comando Gravar (Ctrl+O) e então fechar o arquivo (Ctrl+X). 
+Para salvar o arquivo basta utilizar o comando Gravar (Ctrl+O) e então fechar o arquivo (Ctrl+X). A senha poderá ser alterada posteriormente pelo aluno.
 
-Com o arquivo editado o próximo passo é adicionar esses novos valores a tabela, ou seja, popular a tabela `USER`. Para isso basta executar o arquivo python `adduser.py`.
+Com o arquivo editado o próximo passo é adicionar esses novos valores a tabela, ou seja, popular a tabela `USER`. Para isso basta executar o arquivo python `add_user.py`.
 
-```$ python adduser.py```
+```$ python add_user.py```
 
 Não é necessário passar o arquivo como argumento, apenas é estritamente necessário criar o arquivo com o nome `users.csv`. Agora o projeto já possui os seus usuários!
 
 ## Adicionando Novos Desafios
+
+Adicionar novos desafios é muito parecido com a forma como os usuários são adicionados. Da mesma forma que no caso anterior, é necessário criar um arquivo `.csv`, na pasta `src/` do projeto, mas agora, o nome do arquivo será `users.csv`.
+
+```$ nano users.csv```
+
+A cada linha será inserido as informações de cada desafio. A estrutura que deve descrita é (numb, release, expire, problem, tests, results, diagnosis), sendo os seus significados:
+
+- **numb**: Numeração do desafio
+- **release**: Data de lançamento
+- **expire**: Data de validade
+- **problem**: Descrição do desafio
+- **test**: Possíveis entradas da função
+- **result**: Resultados das entradas fornecidas pelo **test**
+- **diagnosis**: ?
+
+![Adiciona quiz](img/add_quiz.png)
+
+O seu arquivo deve ficar semelhante com a imagem acima.
+
+Para enviar os teste para o servidor basta executar o arquivo python `add_quiz.py`.
+
+```$ python add_quiz.py```
+
+Agora o projeto já possui os desafios!
