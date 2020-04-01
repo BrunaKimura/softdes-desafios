@@ -1,11 +1,11 @@
-# Guia do Desnvolvedor
+# Guia do Desenvolvedor
 
 ## Configurando o Ambiente
 O primeiro passo para utilizar o servidor é configurar o ambiente. Antes de tudo é necessário criar o banco de dados(BD) onde será armazenado tanto as perguntas dos desafios como os usuários da ferramenta, ou seja, os alunos.
 
-Para tanto é necessário instalar o gerenciador do BD, sqlite3. Execute o comando abaixo em um novo terminal (Crtl+Shift+T) para instalar o sqlite3.
+Para tanto é necessário instalar o gerenciador do BD, sqlite3. Execute o comando abaixo em um novo terminal (Crtl+Shift+T) para instalar todas as dependências do projeto com:
 
-```$ pip install pysqlite3```
+```$ pip install -r requirements.txt```
 
 Com o gerenciador instalado o próximo passo é criar o banco de dados utilizando o sqlite3. O comando abaixo permite criar um BD com o nome "quiz", este comando deve ser executado na pasta `src/` do projeto. 
 
