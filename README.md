@@ -1,6 +1,7 @@
 # Desafios de Software
 Este projeto é uma atividade da matéria [Desenvolvimento Aberto](https://insper.github.io/dev-aberto/),
 em que a proposta era reformar um código mal feito e criar uma página web para ele (Projeto Profissional).
+A página pode ser encontrada no link a seguir: https://brunakimura.github.io/softdes-desafios/.
 
 ### Instruções:
 #### Para modificar as páginas do Mkdocs em tempo real:
