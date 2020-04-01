@@ -156,16 +156,6 @@
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#introducao">
-    Introdução
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configurando-o-ambiente">
-    Configurando o Ambiente
-  </a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#adicionando-os-usuarios-alunos">
     Adicionando os Usuários (Alunos)
   </a>
@@ -195,16 +185,6 @@
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#introducao">
-    Introdução
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#configurando-o-ambiente">
-    Configurando o Ambiente
-  </a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#adicionando-os-usuarios-alunos">
     Adicionando os Usuários (Alunos)
   </a>
@@ -223,34 +203,33 @@
 <article class="md-content__inner md-typeset">
 <a class="md-icon md-content__icon" href="https://github.com/BrunaKimura/softdes-desafios/edit/master/docs/professor.md" title="Edit this page"></a>
 <h1 id="professores">Professores</h1>
-<h2 id="introducao">Introdução</h2>
-<h2 id="configurando-o-ambiente">Configurando o Ambiente</h2>
-<p>O primeiro passo para utilizar o servidor é configurar o ambiente. Antes de tudo é necessário criar o banco de dados(BD) onde será armazenado tanto as perguntas dos desafios como os usuários da ferramenta, ou seja, os alunos.</p>
-<p>Para tanto é necessário instalar o gerenciador do BD, sqlite3. Execute o comando abaixo em um novo terminal (Crtl+Shift+T) para instalar o sqlite3.</p>
-<p><code>$ pip install pysqlite3</code></p>
-<p>Com o gerenciador instalado o próximo passo é criar o banco de dados utilizando o sqlite3. O comando abaixo permite criar um BD com o nome "quiz", este comando deve ser executado na pasta <code>\src</code> do projeto. </p>
-<p><code>$ sqlite3 quiz.db</code></p>
-<p>Ao Executar o comando um documento chamado <code>quiz.db</code> será criado na mesma pasta e o seu terminal deverá estardentro do ambiente do sqlite3.
-Para checar se o banco de dados foi devidamente criado, execute o seguinte comando no sqlite3.</p>
-<p><code>sqlite&gt; .database</code></p>
-<p>A função deve retornar o caminho até o documento <code>quiz.db</code>. Com isso feito, agora é necessário criar as tabelas do projeto. Assim, deve-se executar o seguinte comando:</p>
-<p><code>sqlite&gt; .read quiz.sql</code></p>
-<p>Ou simplesmente execute o comando abaixo, assim irá criar o banco de dados e redirecionar as tabelas para o mesmo.</p>
-<p><code>$ sqlite3 quiz.db &lt; quiz.sql</code></p>
-<p>Para checar se as tabelas foram de fato criadas execute o seguinte comando:</p>
-<p><code>sqlite&gt; .tables</code></p>
-<p>O retorno será as tabelas do projeto. Neste caso:
-<code>QUIZ      USER      USERQUIZ</code></p>
 <h2 id="adicionando-os-usuarios-alunos">Adicionando os Usuários (Alunos)</h2>
-<p>O primeiro passo é criar um documento <code>.csv</code>, na pasta <code>\src</code> do projeto. O comando abaixo irá criar o documento e abrir para a edição no editor <em>nano</em>.</p>
+<p>O primeiro passo é criar um documento <code>.csv</code>, na pasta <code>src/</code> do projeto. O comando abaixo irá criar o documento e abrir para a edição no editor <em>nano</em>.</p>
 <p><code>$ nano users.csv</code></p>
-<p>Adicione os alunos e sua senha separando com vírgulas: aluno, senha</p>
+<p>Para adicionar os usuários é necessário escrever o login e o seu tipo sepados por vírgulas, sendo que este último pode ser <code>admin</code> para administrador ou <code>aluno</code> para os alunos. Cada linha recebe a informação de um usuário. Adicione primeiramenta na primeira linha o administrador da página (admin, admin) e em seguida os alunos.</p>
 <p><img alt="Adiciona aluno" src="../img/add_alunos.png"/></p>
-<p>Para salvar o arquivo basta utilizar o comando Gravar (Ctrl+O) e então fechar o arquivo (Ctrl+X). </p>
-<p>Com o arquivo editado o próximo passo é adicionar esses novos valores a tabela, ou seja, popular a tabela <code>USER</code>. Para isso basta executar o arquivo python <code>adduser.py</code>.</p>
-<p><code>$ python adduser.py</code></p>
+<p>Para salvar o arquivo basta utilizar o comando Gravar (Ctrl+O) e então fechar o arquivo (Ctrl+X). A senha poderá ser alterada posteriormente pelo aluno.</p>
+<p>Com o arquivo editado o próximo passo é adicionar esses novos valores a tabela, ou seja, popular a tabela <code>USER</code>. Para isso basta executar o arquivo python <code>add_user.py</code>.</p>
+<p><code>$ python add_user.py</code></p>
 <p>Não é necessário passar o arquivo como argumento, apenas é estritamente necessário criar o arquivo com o nome <code>users.csv</code>. Agora o projeto já possui os seus usuários!</p>
 <h2 id="adicionando-novos-desafios">Adicionando Novos Desafios</h2>
+<p>Adicionar novos desafios é muito parecido com a forma como os usuários são adicionados. Da mesma forma que no caso anterior, é necessário criar um arquivo <code>.csv</code>, na pasta <code>src/</code> do projeto, mas agora, o nome do arquivo será <code>quiz.csv</code>.</p>
+<p><code>$ nano quiz.csv</code></p>
+<p>A cada linha será inserido as informações de cada desafio. A estrutura para adiconar um novo desafio é (numb, release, expire, problem, tests, results, diagnosis), sendo os seus significados:</p>
+<ul>
+<li><strong>numb</strong>: Numeração do desafio</li>
+<li><strong>release</strong>: Data de lançamento</li>
+<li><strong>expire</strong>: Data de validade</li>
+<li><strong>problem</strong>: Descrição do desafio</li>
+<li><strong>test</strong>: Possíveis entradas da função</li>
+<li><strong>result</strong>: Resultados das entradas fornecidas pelo <strong>test</strong></li>
+<li><strong>diagnosis</strong>: ?</li>
+</ul>
+<p><img alt="Adiciona quiz" src="../img/add_quiz.png"/></p>
+<p>O seu arquivo deve ficar semelhante com a imagem acima.</p>
+<p>Para enviar os teste para o servidor basta executar o arquivo python <code>add_quiz.py</code>.</p>
+<p><code>$ python add_quiz.py</code></p>
+<p>Agora o projeto já possui os desafios!</p>
 </article>
 </div>
 </div>

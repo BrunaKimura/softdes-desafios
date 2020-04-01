@@ -161,13 +161,13 @@
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#introducao">
-    Introdução
+<a class="md-nav__link" href="#configurando-o-ambiente">
+    Configurando o Ambiente
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#configuracao-do-ambiente">
-    Configuração do Ambiente
+<a class="md-nav__link" href="#como-executar-o-programa">
+    Como executar o programa
   </a>
 </li>
 <li class="md-nav__item">
@@ -190,13 +190,13 @@
 <label class="md-nav__title" for="__toc">Table of contents</label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#introducao">
-    Introdução
+<a class="md-nav__link" href="#configurando-o-ambiente">
+    Configurando o Ambiente
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#configuracao-do-ambiente">
-    Configuração do Ambiente
+<a class="md-nav__link" href="#como-executar-o-programa">
+    Como executar o programa
   </a>
 </li>
 <li class="md-nav__item">
@@ -213,9 +213,40 @@
 <article class="md-content__inner md-typeset">
 <a class="md-icon md-content__icon" href="https://github.com/BrunaKimura/softdes-desafios/edit/master/docs/guia_des.md" title="Edit this page"></a>
 <h1 id="guia-do-desnvolvedor">Guia do Desnvolvedor</h1>
-<h2 id="introducao">Introdução</h2>
-<h2 id="configuracao-do-ambiente">Configuração do Ambiente</h2>
+<h2 id="configurando-o-ambiente">Configurando o Ambiente</h2>
+<p>O primeiro passo para utilizar o servidor é configurar o ambiente. Antes de tudo é necessário criar o banco de dados(BD) onde será armazenado tanto as perguntas dos desafios como os usuários da ferramenta, ou seja, os alunos.</p>
+<p>Para tanto é necessário instalar o gerenciador do BD, sqlite3. Execute o comando abaixo em um novo terminal (Crtl+Shift+T) para instalar o sqlite3.</p>
+<p><code>$ pip install pysqlite3</code></p>
+<p>Com o gerenciador instalado o próximo passo é criar o banco de dados utilizando o sqlite3. O comando abaixo permite criar um BD com o nome "quiz", este comando deve ser executado na pasta <code>src/</code> do projeto. </p>
+<p><code>$ sqlite3 quiz.db</code></p>
+<p>Ao Executar o comando um documento chamado <code>quiz.db</code> será criado na mesma pasta e o seu terminal deverá estardentro do ambiente do sqlite3.
+Para checar se o banco de dados foi devidamente criado, execute o seguinte comando no sqlite3.</p>
+<p><code>sqlite&gt; .database</code></p>
+<p>A função deve retornar o caminho até o documento <code>quiz.db</code>. Com isso feito, agora é necessário criar as tabelas do projeto. Assim, deve-se executar o seguinte comando:</p>
+<p><code>sqlite&gt; .read quiz.sql</code></p>
+<p>Ou simplesmente execute o comando abaixo, assim irá criar o banco de dados e redirecionar as tabelas para o mesmo.</p>
+<p><code>$ sqlite3 quiz.db &lt; quiz.sql</code></p>
+<p>Para checar se as tabelas foram de fato criadas execute o seguinte comando:</p>
+<p><code>sqlite&gt; .tables</code></p>
+<p>O retorno será as tabelas do projeto. Neste caso:
+<code>QUIZ      USER      USERQUIZ</code></p>
+<h2 id="como-executar-o-programa">Como executar o programa</h2>
+<p>Com o banco de dados já configurado, o próximo passo é executar o programa. Primeiramente é necessário criar um login de administrador, para isso basta olhar o item "Adiciona Usuário" do arquivo <a href="../professor/">professor</a>.</p>
+<p>Para abrir o programa, basta executar o arquivo python <code>servidor.py</code>.</p>
+<p><code>$ python servidor.py</code></p>
+<p>O programa estará rodando no localhost na porta 8080. Assim, para ver o conteúdo da página é necessário abrir um navegador e acessar o seguinte link: <code>http://0.0.0.0:8080/</code>.</p>
+<p>Ao entrar na página irá aparecer um <em>popup</em> onde é possível inserir suas informações para login e assim acessar o servidor de desafios.
+<img alt="Longin" src="../img/login.png"/></p>
 <h2 id="como-contribuir">Como contribuir</h2>
+<p>Para realizar contribuições no projeto:</p>
+<ul>
+<li>Faça um Fork do projeto</li>
+<li>Crie uma Branch para sua Feature (<code>git checkout -b feature/&lt;nome_feature&gt;</code>)</li>
+<li>Adicione suas mudanças (<code>git add .</code>)</li>
+<li>Comite suas mudanças (<code>git commit -m 'Adicionando feature</code>)</li>
+<li>Faça o Push da Branch (<code>git push origin feature/&lt;nome_feature&gt;</code>)</li>
+<li>Abra um Pull Request no Github </li>
+</ul>
 </article>
 </div>
 </div>
