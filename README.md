@@ -13,3 +13,9 @@ PYTHONPATH=src mkdocs serve
 ```
 PYTHONPATH=src mkdocs gh-deploy -c
 ```
+
+#### Testes de interface:
+Para fazer os testes de interface, você precisa ter o driver do Selenium para seu navegador no PATH.
+
+#### Testes Pytest:
+Para executar os testes da lambda_function, execute o commando `pytest` na pasta `tests`.
