@@ -213,8 +213,8 @@
 <p><code>$ python add_user.py</code></p>
 <p>Não é necessário passar o arquivo como argumento, apenas é estritamente necessário criar o arquivo com o nome <code>users.csv</code>. Agora o projeto já possui os seus usuários!</p>
 <h2 id="adicionando-novos-desafios">Adicionando Novos Desafios</h2>
-<p>Adicionar novos desafios é muito parecido com a forma como os usuários são adicionados. Da mesma forma que no caso anterior, é necessário criar um arquivo <code>.csv</code>, na pasta <code>src/</code> do projeto, mas agora, o nome do arquivo será <code>quiz.csv</code>.</p>
-<p><code>$ nano quiz.csv</code></p>
+<p>Para adicionar novos desafios é um pouco mais complicado. Os novos desafios são inseridos no próprio arquivo python <code>add_quiz.py</code>. Na última linha do documento basta inserir uma linha de chamada de função que segue o seguinte modelo:</p>
+<p><code>add_quiz(numb, release, expire, problem, tests, results, diagnosis)</code></p>
 <p>A cada linha será inserido as informações de cada desafio. A estrutura para adiconar um novo desafio é (numb, release, expire, problem, tests, results, diagnosis), sendo os seus significados:</p>
 <ul>
 <li><strong>numb</strong>: Numeração do desafio</li>
@@ -223,10 +223,11 @@
 <li><strong>problem</strong>: Descrição do desafio</li>
 <li><strong>test</strong>: Possíveis entradas da função</li>
 <li><strong>result</strong>: Resultados das entradas fornecidas pelo <strong>test</strong></li>
-<li><strong>diagnosis</strong>: ?</li>
+<li><strong>diagnosis</strong>: Mensagem de erro específica para cada entrada</li>
 </ul>
 <p><img alt="Adiciona quiz" src="../img/add_quiz.png"/></p>
-<p>O seu arquivo deve ficar semelhante com a imagem acima.</p>
+<p>O seu arquivo deve ficar semelhante com a imagem acima. onde a útima linha do documento é a chamada de função com os argumentos do novo desafio.</p>
+<p><code>add_quiz(2, '2020-05-04', '2020-12-31 23:59:59', 'Exemplo Teste', '[[1],[2],[3]]', '[1, 2, 3]', '["nao deu 1","nao deu 2","nao deu 3"]')</code></p>
 <p>Para enviar os teste para o servidor basta executar o arquivo python <code>add_quiz.py</code>.</p>
 <p><code>$ python add_quiz.py</code></p>
 <p>Agora o projeto já possui os desafios!</p>
